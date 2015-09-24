@@ -152,10 +152,48 @@ void printList()
 }
 void postFix(char a[])
 {
-
+    int i,c, x,y;
+    for(i=0; i < 100; i++){
+        if(a[i]>='0' && a[i] <= '9')
+        {
+            c=a[i];
+            x=c-48;
+            insertItem(x);
+        }
+        if(a[i]=='+')
+        {
+           y=list[length-1]+list[length-2];
+           deleteLast();
+           deleteLast();
+           insertItem(y);
+        }
+        if(a[i]=='-')
+        {
+            y=list[length-2]-list[length-1];
+            deleteLast();
+            deleteLast();
+            insertItem(y);
+        }
+        if(a[i]=='*')
+        {
+            y=list[length-2]*list[length-1];
+            deleteLast();
+            deleteLast();
+            insertItem(y);
+        }
+        if(a[i]=='/')
+        {
+            y=list[length-2]/list[length-1];
+            deleteLast();
+            deleteLast();
+            insertItem(y);
+        }
+    }
+    for(i=0; i < length; i++)
+        printf("%d",list[i]);
 }
 
-int main(void)
+/*int main(void)
 {
     initializeList();
     while(1)
@@ -212,4 +250,13 @@ int main(void)
         }
     }
 
+}*/
+main()
+{
+    initializeList();
+    char a[100];
+    printf("Enter Expression: ");
+    scanf("%s",a);
+    postFix(a);
+    clearALL();
 }
